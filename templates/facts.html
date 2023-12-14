@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="main-section">
+
+    <div>
+        <div class="main-heading">
+            <h3>Things need to know all the Coders</h3>
+            <hr>
+        </div>
+        {% for fact in all_facts %}
+        <div class="home-card-facts">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{fact.fact_title}}</h5>
+                        <p class="card-text"><strong>Facts: </strong>{{fact.fact_fact}}</p>
+                        <p class="card-text"><strong>Considerations: </strong>{{fact.fact_consideration}}</p>
+                    </div>
+                    {% if user.is_superuser %}
+                    <div class="card-footer">
+                        <small><a href="{% url 'updateFacts' fact.id %}">Update</a></small>
+                        <small><a href="{% url 'deleteFacts' fact.id %}">Delete</a></small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_superuser %}
+    <div class="main-btn">
+        <a href="{% url 'createFacts' %}"><button type="button"
+                class="btn btn-outline search-btn-color large-main-btn">Create a new fact</button></a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
