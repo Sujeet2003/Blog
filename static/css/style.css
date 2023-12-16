@@ -243,6 +243,7 @@ footer .footer-rights p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 
 @media(max-width: 500px) {
@@ -406,13 +407,38 @@ textarea {
     grid-template-columns: 3fr 1fr;
     border: 2px solid var(--orange-color);
 }
+.post-container .main-post p, .display-post-container p{
+    margin-bottom: 2px !important;
+}
 .post-container .main-post-container{
-    padding: 10px;
     border-right: 1px solid var(--orange-color);
 }
 .post-container .main-post-container .main-post{
+    padding: 10px;
     border-bottom: 1px solid var(--orange-color);
 }
 .post-container .activity-container{
     padding: 10px;
+}
+.display-post-container{
+    border: 2px solid var(--orange-color);
+    padding: 10px;
+}
+.display-post-container img{
+    margin: 20px 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 500px;
+    width: 100%;
+}
+.display-post-container p{
+    margin-bottom: 0 !important;
+}
+
+.card-title, .card-title a{
+    color: var(--orange-color) !important;
+    transition: .3s;
+}
+.card-title a:hover{
+    color: rgb(133, 133, 255) !important;
 }

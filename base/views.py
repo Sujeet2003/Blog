@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     Facts = facts.objects.all().filter()[0:3]
-    Posts = posts.objects.all().order_by('post_created').filter()[0:7]
+    Posts = posts.objects.all().order_by('-post_created').filter()[0:7]
     context = {
         'facts': Facts,
         'Posts': Posts,
@@ -98,7 +98,7 @@ def userLogout(request):
     return redirect('home')
 
 def post(request):
-    total_post = posts.objects.all()
+    total_post = posts.objects.all().order_by('-post_created')
     context = {
         'total_post': total_post
     }

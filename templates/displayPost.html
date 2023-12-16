@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="main-section">
-    <div>
-        <h2>{{post.post_title}}</h2>
-        <img src="{{post.post_image.url}}" style="height: 100px; width: 100px;" alt="image">
-        <p>{{post.post_description}}</p>
-        <span>{{post.post_created | timesince}} ago</span>
+    <div class="display-post-container">
+        <h3 class="main-heading">{{post.post_title}}</h3>
+        <hr>
+        <img src="{{post.post_image.url}}" alt="image">
+        <p><strong>Description: </strong> {{post.post_description}}</p>
+        <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
     </div>
 </section>
 {% endblock %}

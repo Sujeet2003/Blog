@@ -30,7 +30,7 @@
           <div class="card-deck">
             <div class="card">
               <div class="card-body">
-                <a href="{% url 'displayPost' post.id %}"><h5 class="card-title">{{post.post_title}}</h5></a>
+                <h4 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h4>
                 <p class="card-text"><strong>Description: </strong>{{post.post_description}}</p>
                 <p class="card-text"><strong>Updated on: </strong>{{post.post_created | timesince}} ago</p>
               </div>
@@ -39,7 +39,7 @@
           {% endfor %}
         </div>
         <div class="main-btn">
-          <a href="{% url 'post' %}"><button type="button" class="btn btn-outline search-btn-color large-main-btn">Read More</button></a>
+          <a href="{% url 'post' %}"><button type="button" class="btn btn-outline search-btn-color large-main-btn">More Post</button></a>
         </div>
       </div>
     </div>

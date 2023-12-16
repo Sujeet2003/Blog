@@ -2,17 +2,21 @@
 {% block content %}
 <section class="main-section">
     <div>
+        <h3 class="main-heading">Posts</h3>
+        <hr>
         <div class="post-container">
             <div class="main-post-container">
                 {% for post in total_post %}
                 <div class="main-post">
-                    <h2><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h2>
-                    <p>{{post.post_description}}</p>
+                    <h2 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h2>
+                    <p><strong>Description: </strong> {{post.post_description}}</p>
+                    <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
                 </div>
                 {% endfor %}
             </div>
             <div class="activity-container">
-                <h2>recent_activities</h2>
+                <h3 class="main-heading">Recent Activities</h3>
+                <hr>
                 <div>
                     <p>@User_Name</p>
                     <p>User_Queries</p>
