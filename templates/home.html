@@ -27,11 +27,11 @@
         </div>
         <div class="home-card-facts">
           {% for post in Posts %}
-          <div class="card-deck">
+          <div class="card-deck post-card-deck">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h4>
-                <p class="card-text"><strong>Description: </strong>{{post.post_description}}</p>
+                <h5 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h5>
+                <p class="card-text"><strong>Problem: </strong>{{post.post_problem | slice:":35"}}...</p>
                 <p class="card-text"><strong>Updated on: </strong>{{post.post_created | timesince}} ago</p>
               </div>
             </div>

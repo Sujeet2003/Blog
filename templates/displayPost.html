@@ -4,9 +4,16 @@
     <div class="display-post-container">
         <h3 class="main-heading">{{post.post_title}}</h3>
         <hr>
-        <img src="{{post.post_image.url}}" alt="image">
-        <p><strong>Description: </strong> {{post.post_description}}</p>
-        <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
+        <div>
+            <p><strong>Problem: </strong> {{post.post_problem}}</p>
+            <img src="{{post.post_image.url}}" alt="image">
+            <p><strong>Description: </strong> {{post.post_description}}</p>
+            <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
+        </div>
+    </div>
+    <div class="card-footer">
+        <small><a href="{% url 'updatePost' post.id %}">Update</a></small>
+        <small><a href="">Delete</a></small>
     </div>
 </section>
 {% endblock %}

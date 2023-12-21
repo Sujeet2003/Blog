@@ -263,10 +263,13 @@ footer .footer-rights p {
 .home-section .home-card-facts {
     font-family: var(--primary-font);
     display: flex !important;
+    justify-content: space-between;
 }
 
 .home-section .card-deck {
     margin: 0 10px !important;
+    /* width: 33%; */
+
 }
 
 .card {
@@ -316,14 +319,6 @@ footer .footer-rights p {
 }
 
 @media (max-width: 550px) {
-    body {
-        width: 100%;
-    }
-
-    .main-navbar {
-        width: 100%;
-    }
-
     .card {
         margin: 0 15px;
     }
@@ -402,43 +397,75 @@ textarea {
     }
 }
 
-.post-container{
+.post-container {
     display: grid;
     grid-template-columns: 3fr 1fr;
     border: 2px solid var(--orange-color);
 }
-.post-container .main-post p, .display-post-container p{
+
+.post-container .main-post p,
+.display-post-container p {
     margin-bottom: 2px !important;
 }
-.post-container .main-post-container{
+
+.post-container .main-post-container {
     border-right: 1px solid var(--orange-color);
 }
-.post-container .main-post-container .main-post{
+
+.post-container .main-post-container .main-post {
     padding: 10px;
     border-bottom: 1px solid var(--orange-color);
 }
-.post-container .activity-container{
+
+.post-container .activity-container {
     padding: 10px;
 }
-.display-post-container{
+
+.display-post-container {
     border: 2px solid var(--orange-color);
     padding: 10px;
 }
-.display-post-container img{
+
+.display-post-container img {
     margin: 20px 0;
     border: 1px solid gray;
     border-radius: 10px;
     height: 500px;
     width: 100%;
 }
-.display-post-container p{
+
+.display-post-container p {
     margin-bottom: 0 !important;
+    text-align: justify;
 }
 
-.card-title, .card-title a{
+.card-title,
+.card-title a {
     color: var(--orange-color) !important;
     transition: .3s;
 }
-.card-title a:hover{
+
+.card-title a:hover {
     color: rgb(133, 133, 255) !important;
+}
+
+.card-deck{
+    width: 33%;
+}
+
+@media(max-width: 1000px) {
+    body {
+        width: 100%;
+    }
+    .main-navbar {
+        width: 100%;
+    }
+    .card-deck{
+        width: auto;
+    }
+}
+@media(max-width: 600px){
+    .post-container{
+        grid-template-columns: none;
+    }
 }

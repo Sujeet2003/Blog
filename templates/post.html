@@ -9,7 +9,7 @@
                 {% for post in total_post %}
                 <div class="main-post">
                     <h2 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h2>
-                    <p><strong>Description: </strong> {{post.post_description}}</p>
+                    <p><strong>Description: </strong> {{post.post_description | slice:":100"}}...</p>
                     <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
                 </div>
                 {% endfor %}
@@ -27,6 +27,12 @@
                 </div>
             </div>
         </div>
+        {% if user.is_superuser %}
+        <div class="main-btn">
+            <a href="{% url 'uploadPost' %}"><button type="button"
+                    class="btn btn-outline search-btn-color large-main-btn">Upload a New Post</button></a>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

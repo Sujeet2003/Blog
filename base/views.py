@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import facts, posts
 from django.contrib import messages
-from .forms import updateFact
+from .forms import updateFact, updatePost
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     Facts = facts.objects.all().filter()[0:3]
-    Posts = posts.objects.all().order_by('-post_created').filter()[0:7]
+    Posts = posts.objects.all().order_by('-post_created').filter()[0:3]
     context = {
         'facts': Facts,
         'Posts': Posts,
@@ -111,3 +111,21 @@ def displayPost(request, pk):
         'post': post,
     }
     return render(request, 'displayPost.html', context)
+
+def uploadPost(request):
+    page = 'upload'
+    if request.method == 'POST':
+        post_title = request.POST['post_title']
+        post_problem = request.POST['post_problem']
+        post_image = request.FILES['post_image']
+        post_description = request.POST['post_description']
+        upload_post = posts(post_title=post_title, post_problem=post_problem, post_image=post_image, post_description=post_description)
+        upload_post.save()
+        messages.success(request, "Post uploaded successfully!!")
+        return redirect('post')
+    else:
+        return render(request, 'uploadPost.html', page)
+    
+def updatePost(request, pk):
+    
+    return render(request, 'uploadPost.html')
