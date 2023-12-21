@@ -27,13 +27,16 @@
             </div>
         </form>
     </div>
-    <!-- {% else %}
+
+    {% else %}
     <div class="fact-form">
         <form action="" method="post">
             {% csrf_token %}
-
+            {{update_form}}
+            <input type="submit" value="Update">
         </form>
-    </div> -->
+    </div>
+    
     {% endif %}
 </section>
 {% endblock %}

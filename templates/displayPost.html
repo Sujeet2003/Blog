@@ -11,9 +11,11 @@
             <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
         </div>
     </div>
+    {% if user.is_superuser %}
     <div class="card-footer">
-        <small><a href="{% url 'updatePost' post.id %}">Update</a></small>
-        <small><a href="">Delete</a></small>
+        <small><a href="{% url 'updatePost' pk=post.id %}">Update</a></small>
+        <small><a href="{% url 'deletePost' pk=post.id %}">Delete</a></small>
     </div>
+    {% endif %}
 </section>
 {% endblock %}

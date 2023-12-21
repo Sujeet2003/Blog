@@ -469,3 +469,23 @@ textarea {
         grid-template-columns: none;
     }
 }
+.display-fact{
+    width: 100% !important;
+    margin: 0;
+}
+.delete p{
+    font-size: 20px;
+}
+.delete a{
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    box-shadow: 0 0 2px 2px var(--orange-color);
+    color: black;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    background-color: rgb(240, 240, 240);;
+}

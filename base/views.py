@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from .models import facts, posts
 from django.contrib import messages
 from .forms import updateFact, updatePost
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     Facts = facts.objects.all().filter()[0:3]
-    Posts = posts.objects.all().order_by('-post_created').filter()[0:3]
+    Posts = posts.objects.all().filter()[0:3]
     context = {
         'facts': Facts,
         'Posts': Posts,
@@ -48,15 +48,21 @@ def updateFacts(request, pk):
             form.save()
             messages.success(request, "Fact has been updated successfully!!")
             return redirect('facts')
+        else:
+            messages.error(request, "Enter the valid inputs!!")
     else:
         return render(request, 'createFact.html', {'form': form})
     
 
 def deleteFacts(request, pk):
     fact = facts.objects.get(id=pk)
-    fact.delete()
-    messages.info(request, "Fact has been deleted successfully!!")
-    return redirect('facts')
+    name = fact.fact_title
+    if request.method == 'POST':
+        fact.delete()
+        messages.error(request, "Fact has been deleted successfully!!")
+        return redirect('facts')
+    else:
+        return render(request, 'delete.html', {'name': name})
 
 def userRegister(request):
     page = 'user_register'
@@ -87,9 +93,13 @@ def userLogin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect('home')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Username/Password in invalid, Try again!!")
+            return redirect('login')
     else:
         return render(request, 'userRegister.html')
 
@@ -105,12 +115,14 @@ def post(request):
     return render(request, 'post.html', context)
 
 
+@login_required(login_url='login')
 def displayPost(request, pk):
     post = posts.objects.get(id=pk)
     context = {
         'post': post,
     }
     return render(request, 'displayPost.html', context)
+
 
 def uploadPost(request):
     page = 'upload'
@@ -119,13 +131,33 @@ def uploadPost(request):
         post_problem = request.POST['post_problem']
         post_image = request.FILES['post_image']
         post_description = request.POST['post_description']
-        upload_post = posts(post_title=post_title, post_problem=post_problem, post_image=post_image, post_description=post_description)
-        upload_post.save()
-        messages.success(request, "Post uploaded successfully!!")
+        post = posts(post_title=post_title, post_problem=post_problem, post_image=post_image, post_description=post_description)
+        post.save()
+        messages.success(request, "Post has been uploaded successfully!!")
         return redirect('post')
     else:
-        return render(request, 'uploadPost.html', page)
+        return render(request, 'uploadPost.html', {'page': page})
+
+def updatePosts(request, pk):
+    update_post = posts.objects.get(id=pk)
+    form = updatePost(instance=update_post)
+    if request.method == 'POST':
+        form = updatePost(request.POST, instance=update_post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Post has been updated successfully!!")
+            return redirect('post')
+        else:
+            form = updatePost(instance=update_post)
+    else:
+        return render(request, 'uploadPost.html', {'update_form': form, 'update_post': update_post})
     
-def updatePost(request, pk):
-    
-    return render(request, 'uploadPost.html')
+def deletePosts(request, pk):
+    post = posts.objects.get(id=pk)
+    name = post.post_title
+    if request.method == 'POST':
+        post.delete()
+        messages.error(request, "Post has been deleted successfully!!")
+        return redirect('post')
+    else:
+        return render(request, 'delete.html', {'name': name})
