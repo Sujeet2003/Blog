@@ -186,7 +186,8 @@ def deletePosts(request, pk):
     
 def saveComments(request):
     if request.method == 'POST':
-        comments = logginedUser.objects.create(user_query=request.POST.get('user_query'))
+        user_query = request.POST['user_query']
+        comments = logginedUser(user_query=user_query)
         comments.save()
         messages.success(request, "Thanks for your comments, We'll review it soon!!")
         return redirect('post')
