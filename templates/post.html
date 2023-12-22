@@ -6,6 +6,7 @@
         <hr>
         <div class="post-container">
             <div class="main-post-container">
+                {% if total_post %}
                 {% for post in total_post %}
                 <div class="main-post">
                     <h2 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h2>
@@ -13,14 +14,23 @@
                     <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div>
+                    <p style="text-align: center;">{{message}}</p>
+                </div>
+                {% endif %}
             </div>
+        </div>
+        <div>
             <div class="activity-container">
                 <h3 class="main-heading">Recent Activities</h3>
                 <hr>
+                {% for user in users reversed %}
                 <div>
-                    <p>@{{user}}</p>
-                    <p>User_Queries</p>
+                    <p>@{{user.user}}</p>
+                    <p>{{user.user_query}}</p>
                 </div>
+                {% endfor %}
                 <div>
                     <a href="">Edit</a>
                     <a href="">Delete</a>

@@ -26,6 +26,7 @@
           <hr>
         </div>
         <div class="home-card-facts">
+          {% if Posts %}
           {% for post in Posts %}
           <div class="card-deck post-card-deck">
             <div class="card">
@@ -37,6 +38,11 @@
             </div>
           </div>
           {% endfor %}
+          {% else %}
+          <div>
+            <p>{{message}}</p>
+          </div>
+          {% endif %}
         </div>
         <div class="main-btn">
           <a href="{% url 'post' %}"><button type="button" class="btn btn-outline search-btn-color large-main-btn">More Post</button></a>

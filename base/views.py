@@ -1,17 +1,27 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from .models import facts, posts
+from .models import facts, posts, logginedUser
 from django.contrib import messages
 from .forms import updateFact, updatePost
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
+    message = "Posts Is Not Available For This Query"
+    query = request.GET.get('q') if request.GET.get('q') != None else ''
+    if query:
+        Posts = posts.objects.filter(
+            Q(post_title__icontains=query)
+        )[0:3]
+    else:
+        Posts = posts.objects.all().order_by('-post_created').filter()[0:3]
+
     Facts = facts.objects.all().filter()[0:3]
-    Posts = posts.objects.all().order_by('-post_created').filter()[0:3]
     context = {
+        'message': message,
         'facts': Facts,
         'Posts': Posts,
     }
@@ -108,9 +118,21 @@ def userLogout(request):
     return redirect('home')
 
 def post(request):
-    total_post = posts.objects.all().order_by('-post_created')
+    message = "Posts Is Not Available For This Query"
+    users = logginedUser.objects.all().filter()[0:10]
+    query = request.GET.get('q') if request.GET.get('q') != None else ''
+    if query:
+        total_post = posts.objects.filter(
+            Q(post_title__icontains=query)
+        )
+    else:
+        message = ""
+        total_post = posts.objects.all().order_by('-post_created').filter()[0:30]
+
     context = {
-        'total_post': total_post
+        'total_post': total_post,
+        'users': users,
+        'message': message,
     }
     return render(request, 'post.html', context)
 

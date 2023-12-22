@@ -398,18 +398,14 @@ textarea {
 }
 
 .post-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    display: flex;
+    flex-direction: column;
     border: 2px solid var(--orange-color);
 }
 
 .post-container .main-post p,
 .display-post-container p {
     margin-bottom: 2px !important;
-}
-
-.post-container .main-post-container {
-    border-right: 1px solid var(--orange-color);
 }
 
 .post-container .main-post-container .main-post {
