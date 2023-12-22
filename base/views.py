@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from .models import facts, posts, logginedUser
 from django.contrib import messages
-from .forms import updateFact, updatePost
+from .forms import updateFact, updatePost, updateUserComments
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -183,3 +183,25 @@ def deletePosts(request, pk):
         return redirect('post')
     else:
         return render(request, 'delete.html', {'name': name})
+    
+def saveComments(request):
+    if request.method == 'POST':
+        comments = logginedUser.objects.create(user_query=request.POST.get('user_query'))
+        comments.save()
+        messages.success(request, "Thanks for your comments, We'll review it soon!!")
+        return redirect('post')
+    else:
+        return render(request, 'post.html')
+    
+def updateComments(request, pk):
+    update_post = logginedUser.objects.get(id=pk)
+    post = updateUserComments(instance=update_post)
+    if request.method == 'POST':
+        post = updateUserComments(request.POST, instance=update_post)
+        if post.is_valid():
+            post.save()
+            return redirect('post')
+        else:
+            post = updateUserComments(instance=update_post)
+    else:
+        return render(request, 'comments.html', {'post': post, 'update_post': update_post})

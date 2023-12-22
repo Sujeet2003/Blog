@@ -485,3 +485,56 @@ textarea {
     text-align: center;
     background-color: rgb(240, 240, 240);;
 }
+.post-activity{
+    margin-top: 50px;
+}
+.activity-container{
+    border-left: 2px solid var(--orange-color);
+    border-right: 2px solid var(--orange-color);
+    border-top: 2px solid var(--orange-color);
+}
+.user-comments{
+    border-bottom: 2px solid var(--orange-color);
+}
+.user-comments p{
+    margin-bottom: 0 !important;
+}
+.user-comments p:nth-child(2){
+    margin-bottom: 10px !important;
+}
+.user-comments .user-name{
+    font-size: 20px;
+}
+.user-comments .user-name a:hover{
+    color: var(--orange-color);
+}
+.query-section{
+    margin: 10px 0;
+    border-bottom: 2px solid var(--orange-color);
+}
+.query-section form input{
+    outline: none;
+    width: 50%;
+    border: none;
+    box-shadow: 0 0 2px 2px var(--orange-color);
+    padding: 5px;
+}
+.query-section form input[type='submit']{
+    margin-left: 10px;
+    width: 10%;
+    color: var(--orange-color);
+    transition: .3s;
+}
+.query-section form input[type='submit']:hover{
+    color: #fff;
+    background-color: var(--orange-color);
+}
+@media(max-width: 500px){
+    .query-section form input[type='submit']{
+        width: 20%;
+    }
+}
+
+.user-subcontainer{
+    padding: 20px 10px;
+}

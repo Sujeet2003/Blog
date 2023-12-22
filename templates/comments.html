@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="main-section">
+    <div class="fact-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{post}}
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</section>
+{% endblock %}

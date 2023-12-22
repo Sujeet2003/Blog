@@ -17,5 +17,6 @@ urlpatterns = [
     path('all-posts/upload-post/', views.uploadPost, name="uploadPost"),
     path('all-posts/update-post/<str:pk>/', views.updatePosts, name="updatePost"),
     path('all-posts/delete-post/<str:pk>/', views.deletePosts, name="deletePost"),
+    path('all-posts/update-comments/<str:pk>/', views.updateComments, name="updateComments"),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

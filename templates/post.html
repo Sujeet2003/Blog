@@ -21,20 +21,35 @@
                 {% endif %}
             </div>
         </div>
-        <div>
+        <div class="post-activity">
+            <h3 class="main-heading">Recent Activities</h3>
+            <hr>
             <div class="activity-container">
-                <h3 class="main-heading">Recent Activities</h3>
-                <hr>
+                <div class="user-subcontainer query-section">
+                    <form method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <input type="text" name="user_query" placeholder="Ask anything...">
+                        <input type="submit" value="ASK">
+                    </form>
+                </div>
                 {% for user in users reversed %}
-                <div>
-                    <p>@{{user.user}}</p>
-                    <p>{{user.user_query}}</p>
+                <div class="user-comments">
+                    <div class="user-subcontainer">
+                        <p>
+                            <span class="user-name"><a href="{% url 'post' %}"><strong>@{{user.user}}</strong></a>
+                                |</span>
+                            <span style="font-size: 13px !important;">{{user.user_created | timesince}} ago</span>
+                        </p>
+                        <p><strong>Comments: </strong> {{user.user_query}}</p>
+                        {% if request.user == user.user %}
+                        <div>
+                            <a href="{% url 'updateComments' pk=user.id %}">Edit</a>
+                            <a href="">Delete</a>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
                 {% endfor %}
-                <div>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
-                </div>
             </div>
         </div>
         {% if user.is_superuser %}
