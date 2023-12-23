@@ -6,7 +6,9 @@
         <hr>
         <div>
             <p><strong>Problem: </strong> {{post.post_problem}}</p>
+            {% if post.post_image %}
             <img src="{{post.post_image.url}}" alt="image">
+            {% endif %}
             <p><strong>Description: </strong> {{post.post_description}}</p>
             <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
         </div>

@@ -151,7 +151,7 @@ def uploadPost(request):
     if request.method == 'POST':
         post_title = request.POST['post_title']
         post_problem = request.POST['post_problem']
-        post_image = request.FILES['post_image']
+        post_image = request.FILES.get('post_image', None)
         post_description = request.POST['post_description']
         post = posts(post_title=post_title, post_problem=post_problem, post_image=post_image, post_description=post_description)
         post.save()
@@ -184,12 +184,12 @@ def deletePosts(request, pk):
     else:
         return render(request, 'delete.html', {'name': name})
     
-def saveComments(request):
+def askQuery(request):
     if request.method == 'POST':
         user_query = request.POST['user_query']
-        comments = logginedUser(user_query=user_query)
-        comments.save()
-        messages.success(request, "Thanks for your comments, We'll review it soon!!")
+        comment = logginedUser(user=request.user, user_query=user_query)
+        comment.save()
+        messages.success(request, "Thanks for your comment, we'll review it soon!!")
         return redirect('post')
     else:
         return render(request, 'post.html')
@@ -201,8 +201,19 @@ def updateComments(request, pk):
         post = updateUserComments(request.POST, instance=update_post)
         if post.is_valid():
             post.save()
+            messages.success(request, "Comment has been updated successfully!!")
             return redirect('post')
         else:
             post = updateUserComments(instance=update_post)
     else:
         return render(request, 'comments.html', {'post': post, 'update_post': update_post})
+    
+def deleteComments(request, pk):
+    comment = logginedUser.objects.get(id=pk)
+    name = comment.user
+    if request.method == 'POST':
+        comment.delete()
+        messages.error(request, "Comment has been deleted successfully!!")
+        return redirect('post')
+    else:
+        return render(request, 'delete.html', {'name': name})

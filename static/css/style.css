@@ -107,7 +107,7 @@ hr {
 header.masthead {
     padding-top: 5rem;
     height: auto;
-    background: linear-gradient(to bottom, rgba(49, 49, 49, 0.6) 0%, rgba(45, 45, 45, 0.6) 100%), url('/static/images/banner_images_1.jpg');
+    background: linear-gradient(to bottom, rgba(49, 49, 49, 0.7) 0%, rgba(45, 45, 45, 0.7) 100%), url('/static/images/banner_images_1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -25,13 +25,19 @@
             <h3 class="main-heading">Recent Activities</h3>
             <hr>
             <div class="activity-container">
+                {% if user.is_authenticated %}
                 <div class="user-subcontainer query-section">
-                    <form method="post" autocomplete="off">
+                    <form action="{% url 'askQuery' %}" method="post" autocomplete="off" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input type="text" name="user_query" placeholder="Ask anything...">
-                        <input type="submit" value="ASK">
+                        <div>
+                            <label for="user_query">Ask any query here:  </label>
+                            <br>
+                            <input type="text" name="user_query" id="user_query" placeholder="Ask Anything..." />
+                            <input type="submit" value="ASK">
+                        </div>
                     </form>
                 </div>
+                {% endif %}
                 {% for user in users reversed %}
                 <div class="user-comments">
                     <div class="user-subcontainer">
@@ -44,7 +50,7 @@
                         {% if request.user == user.user %}
                         <div>
                             <a href="{% url 'updateComments' pk=user.id %}">Edit</a>
-                            <a href="">Delete</a>
+                            <a href="{% url 'deleteComments' pk=user.id %}">Delete</a>
                         </div>
                         {% endif %}
                     </div>

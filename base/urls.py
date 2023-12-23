@@ -18,5 +18,7 @@ urlpatterns = [
     path('all-posts/update-post/<str:pk>/', views.updatePosts, name="updatePost"),
     path('all-posts/delete-post/<str:pk>/', views.deletePosts, name="deletePost"),
     path('all-posts/update-comments/<str:pk>/', views.updateComments, name="updateComments"),
+    path('all-posts/delete-comments/<str:pk>/', views.deleteComments, name="deleteComments"),
+    path('all-posts/ask-your-query/', views.askQuery, name="askQuery"),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

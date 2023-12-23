@@ -16,7 +16,7 @@ class facts(models.Model):
 class posts(models.Model):
     post_title = models.CharField(max_length=200)
     post_problem = models.CharField(max_length=200)
-    post_image = models.ImageField(upload_to='images/', blank=True, null=True)
+    post_image = models.ImageField(upload_to='images/')
     post_description = models.TextField()
     post_created = models.DateTimeField(auto_now_add=True)
 
@@ -29,4 +29,4 @@ class logginedUser(models.Model):
     user_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user_query
+        return str(self.user)
