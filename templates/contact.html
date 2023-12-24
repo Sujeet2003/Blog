@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="main-section">
+    <div>
+        <div>
+            <h3 class="main-heading">Contact Us</h3>
+            <hr>
+        </div>
+        <div class="fact-form">
+            <form action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <input type="text" name="name" placeholder="Enter Your Name">
+                    <input type="email" name="email" placeholder="Enter Your Email">
+                    <input type="number" name="phone" placeholder="Enter Your Contact Number">
+                    <textarea name="description" cols="30" rows="10" placeholder="Write Your Query..."></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Send">
+                    <input type="reset" value="Reset">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

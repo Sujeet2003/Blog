@@ -45,7 +45,7 @@
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get">
@@ -62,7 +62,7 @@
 
     <!-- Messages/Alerts -->
 
-    <div>
+    <div class="message-section">
         {% for msg in messages %}
         {% if msg.tags == 'success' %}
         <div class="msg-alert">
@@ -116,9 +116,9 @@
         <div class="links">
             <h4>Links</h4>
             <ul>
-                <li><a href="">home</a></li>
-                <li><a href="">blogs</a></li>
-                <li><a href="">about</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'post' %}">Posts</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
             </ul>
         </div>
         <div>

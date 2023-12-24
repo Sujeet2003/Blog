@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponseNotFound
-from .models import facts, posts, logginedUser, projectItems, personalDetails, personalSkills
+from .models import facts, posts, logginedUser, projectItems, personalDetails, personalSkills, contact_form, reviewUs
 from django.contrib import messages
 from .forms import updateFact, updatePost, updateUserComments
 from django.contrib.auth.models import User
@@ -21,10 +20,13 @@ def home(request):
 
     Facts = facts.objects.all().filter()[0:3]
 
+    testinomials = reviewUs.objects.all().order_by('-testinomial_created').filter()[0:3]
+
     context = {
         'message': message,
         'facts': Facts,
         'Posts': Posts,
+        'testinomials': testinomials,
     }
     return render(request, 'home.html', context)
 
@@ -229,3 +231,27 @@ def about(request):
         'skills': skills,
     }
     return render(request, 'about.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        description = request.POST.get('description')
+        form = contact_form(name=name, email=email, phone=phone, description=description)
+        form.save()
+        messages.success(request, "Thanks for contacting us, We'll contact you back soon!!")
+        return redirect('contact')
+    else:
+        return render(request, 'contact.html')
+    
+@login_required(login_url='login')
+def rateUs(request):
+    if request.method == 'POST':
+        testinomial = request.POST['testinomial']
+        test = reviewUs(user=request.user, testinomial=testinomial)
+        test.save()
+        messages.success(request, "Thanks for your review!!")
+        return redirect('home')
+    else:
+        return render(request, 'reviewUs.html')

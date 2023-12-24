@@ -690,3 +690,40 @@ strong {
         flex-direction: column;
     }
 }
+.fact-form input[type='number']::-webkit-inner-spin-button, .fact-form input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.message-section{
+    position: absolute;
+    top: 0;
+}
+
+.carousel-item img{
+    height: 500px;
+}
+.d-none{
+    display: block !important;
+}
+.d-none h5{
+    margin-top: 10px;
+    font-size: 1rem;
+}
+.d-none p{
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+@media(max-width: 500px){
+    .carousel-item img{
+        height: 300px;
+    }
+}
+.testinomial-container{
+    margin: 25px 0;
+}
+.testinomial{
+    display: flex;
+    justify-content: space-between;
+}
+.test{
+    margin: 0 10px;
+}

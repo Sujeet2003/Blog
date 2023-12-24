@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="main-section">
+    {% if user.is_authenticated %}
+    <div id="review">
+        <div>
+            <h3 class="main-heading">Review Us</h3>
+            <hr>
+        </div>
+        <div class="fact-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <textarea name="testinomial" placeholder="Type Your Review Here..." cols="30" rows="10"></textarea>
+                <input type="submit" value="Rate">
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

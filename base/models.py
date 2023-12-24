@@ -59,3 +59,20 @@ class personalSkills(models.Model):
 
     def __str__(self):
         return str(self.others)
+    
+class contact_form(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.BigIntegerField()
+    description = models.TextField()
+
+    def __str__(self):
+        return str(self.email)
+    
+class reviewUs(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    testinomial = models.TextField()
+    testinomial_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
