@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from .models import facts, posts, logginedUser
+from .models import facts, posts, logginedUser, projectItems, personalDetails, personalSkills
 from django.contrib import messages
 from .forms import updateFact, updatePost, updateUserComments
 from django.contrib.auth.models import User
@@ -20,6 +20,7 @@ def home(request):
         Posts = posts.objects.all().order_by('-post_created').filter()[0:3]
 
     Facts = facts.objects.all().filter()[0:3]
+
     context = {
         'message': message,
         'facts': Facts,
@@ -217,3 +218,14 @@ def deleteComments(request, pk):
         return redirect('post')
     else:
         return render(request, 'delete.html', {'name': name})
+    
+def about(request):
+    projects = projectItems.objects.all()
+    details = personalDetails.objects.get()
+    skills = personalSkills.objects.get()
+    context = {
+        'projects': projects,
+        'details': details,
+        'skills': skills,
+    }
+    return render(request, 'about.html', context)

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="main-section">
+    <div class="about-section">
+        <div class="first-part">
+            <h3>Namaskar, This is</h3>
+            <h1>SUJEET KUMAR</h1>
+            <h3>a passionate <strong>Web Developer</strong>!</h3>
+        </div>
+        <div>
+            <img src="{% static 'images/personal.jpeg' %}">
+        </div>
+    </div>
+    <div class="project-section">
+        <div>
+            <div class="main-heading">
+                <h3>Projects</h3>
+                <hr>
+            </div>
+            <div class="project-container">
+                {% for project in projects %}
+                <div class="project">
+                    <img src="{{project.project_poster.url}}" alt="poster not found">
+                    <div class="project-design">
+                        <h3>{{project.project_title}}</h3>
+                        <hr>
+                        <p>{{project.project_description}}</p>
+                        <button><a href="{{project.project_link}}" target="_blank"><i
+                                    class="bx bx-link-external"></i></a></button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="details">
+        <div class="personal-details">
+            <div class="main-heading">
+                <h3>Personal Details</h3>
+                <hr>
+            </div>
+            <div>
+                <p><strong>Total Experience: </strong>{{details.total_experience}} Years (Fresher)</p>
+                <p><strong>Current Location: </strong>{{details.current_location}}</p>
+                <p><strong>Email: </strong><a href="">{{details.email}}</a></p>
+                <p><strong>Contact Number: </strong>(+91) {{details.phone}}</p>
+                <!-- <p><strong>Languages: </strong>{{details.languages}}</p> -->
+            </div>
+        </div>
+        <div class="skills">
+            <div class="main-heading">
+                <h3>Skills</h3>
+                <hr>
+            </div>
+            <div>
+                <p><strong>Programming Languages: </strong>{{skills.languages}}</p>
+                <p><strong>Frameworks: </strong>{{skills.frameworks}}</p>
+                <p><strong>Version Control: </strong>{{skills.versionControl}}</p>
+                <p><strong>Others: </strong>{{skills.others}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

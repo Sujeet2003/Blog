@@ -20,5 +20,6 @@ urlpatterns = [
     path('all-posts/update-comments/<str:pk>/', views.updateComments, name="updateComments"),
     path('all-posts/delete-comments/<str:pk>/', views.deleteComments, name="deleteComments"),
     path('all-posts/ask-your-query/', views.askQuery, name="askQuery"),
+    path('about-me/', views.about, name="about"),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

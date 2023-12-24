@@ -18,64 +18,67 @@
       </div>
     </header>
 
-
-    <div class="home-section">
-      <div class="home">
-        <div class="main-heading">
-          <h3>Recent Posts</h3>
-          <hr>
-        </div>
-        <div class="home-card-facts">
-          {% if Posts %}
-          {% for post in Posts %}
-          <div class="card-deck post-card-deck">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h5>
-                <p class="card-text"><strong>Problem: </strong>{{post.post_problem | slice:":35"}}...</p>
-                <p class="card-text"><strong>Updated on: </strong>{{post.post_created | timesince}} ago</p>
+    <section class="main-section">
+      <div class="home-section">
+        <div class="home">
+          <div class="main-heading">
+            <h3>Recent Posts</h3>
+            <hr>
+          </div>
+          <div class="home-card-facts">
+            {% if Posts %}
+            {% for post in Posts %}
+            <div class="card-deck post-card-deck">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'displayPost' post.id %}">{{post.post_title}}</a></h5>
+                  <p class="card-text"><strong>Problem: </strong>{{post.post_problem | slice:":35"}}...</p>
+                  <p class="card-text"><strong>Updated on: </strong>{{post.post_created | timesince}} ago</p>
+                </div>
               </div>
             </div>
+            {% endfor %}
+            {% else %}
+            <div>
+              <p>{{message}}</p>
+            </div>
+            {% endif %}
           </div>
-          {% endfor %}
-          {% else %}
-          <div>
-            <p>{{message}}</p>
+          <div class="main-btn">
+            <a href="{% url 'post' %}"><button type="button"
+                class="btn btn-outline search-btn-color large-main-btn">More Post</button></a>
           </div>
-          {% endif %}
-        </div>
-        <div class="main-btn">
-          <a href="{% url 'post' %}"><button type="button" class="btn btn-outline search-btn-color large-main-btn">More Post</button></a>
         </div>
       </div>
-    </div>
 
 
-    <div class="home-section">
-      <div class="home">
-        <div class="main-heading">
-          <h3>Things need to know all the Coders <strong> :)</strong></h3>
-          <hr>
-        </div>
-        <div class="home-card-facts">
-          {% for fact in facts %}
-          <div class="card-deck">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{fact.fact_title}}</h5>
-                <p class="card-text"><strong>Facts: </strong>{{fact.fact_fact}}</p>
-                <p class="card-text"><strong>Considerations: </strong>{{fact.fact_consideration}}</p>
+      <div class="home-section">
+        <div class="home">
+          <div class="main-heading">
+            <h3>Things need to know all the Coders <strong> :)</strong></h3>
+            <hr>
+          </div>
+          <div class="home-card-facts">
+            {% for fact in facts %}
+            <div class="card-deck">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{fact.fact_title}}</h5>
+                  <p class="card-text"><strong>Facts: </strong>{{fact.fact_fact}}</p>
+                  <p class="card-text"><strong>Considerations: </strong>{{fact.fact_consideration}}</p>
+                </div>
               </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
-        <div class="main-btn">
-          <a href="{% url 'facts' %}"><button type="button" class="btn btn-outline search-btn-color large-main-btn">Read More</button></a>
+          <div class="main-btn">
+            <a href="{% url 'facts' %}"><button type="button"
+                class="btn btn-outline search-btn-color large-main-btn">Read More</button></a>
+          </div>
         </div>
       </div>
-    </div>
 
+    </section>
     <div>
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

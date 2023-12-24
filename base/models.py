@@ -30,3 +30,32 @@ class logginedUser(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    
+class projectItems(models.Model):
+    project_title = models.CharField(max_length=30)
+    project_description = models.TextField()
+    project_poster = models.ImageField(upload_to='images/')
+    project_link = models.URLField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.project_title)
+    
+class personalDetails(models.Model):
+    total_experience = models.IntegerField()
+    current_location = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.BigIntegerField()
+    languages = models.CharField(max_length=50)
+
+    def __str__(self):
+        return str(self.current_location)
+    
+class personalSkills(models.Model):
+    languages = models.CharField(max_length=100)
+    frameworks = models.CharField(max_length=500)
+    versionControl = models.CharField(max_length=200)
+    others = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.others)
