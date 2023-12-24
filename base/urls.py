@@ -4,9 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('user-registration/', views.userRegister, name="register"),
-    path('user-login/', views.userLogin, name="login"),
-    path('user-logout/', views.userLogout, name="logout"),
+    path('user-accounts/user-registration/', views.userRegister, name="register"),
+    path('user-accounts/user-login/', views.userLogin, name="login"),
+    path('user-accounts/user-logout/', views.userLogout, name="logout"),
     path('', views.home, name="home"),
     path('fact/facts-need-to-know/', views.allFacts, name="facts"),
     path('fact/create-a-new-fact/', views.createFacts, name="createFacts"),

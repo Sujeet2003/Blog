@@ -111,7 +111,7 @@ def userLogin(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, "Username/Password in invalid, Try again!!")
+            messages.error(request, "Username/Password is invalid, Try again!!")
             return redirect('login')
     else:
         return render(request, 'userRegister.html')

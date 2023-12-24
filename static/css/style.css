@@ -362,11 +362,20 @@ textarea {
     padding: 20px 0;
     display: grid;
     grid-template-columns: 50% 50%;
+    place-items: center;
+    place-content: center;
 }
 
-.login-form>div>h1 {
-    margin-bottom: 20px;
-    padding: 20px 0;
+.login-form-para p{
+    text-align: justify;
+    padding-right: 30px;
+    font-size: 20px;
+}
+
+.login-form-user{
+    width: 100%;
+    border-left: 2px solid var(--orange-color);
+    padding-left: 30px;
 }
 
 .register-form {
@@ -392,7 +401,18 @@ textarea {
 @media(max-width: 700px) {
     .login-form {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+    .login-form-user{
+        border-left: none;
+        padding-left: 0;
+    }
+    .login-form-para{
+        margin-top: 30px;
+    }
+    .login-form-para p{
+        padding-right: 0;
+        margin-top: 30px;
     }
 
     .login-form>div {

@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <section class="main-section">
     <h1 class="main-heading">Login/Register Here</h1>
     <hr>
     <div class="login-form">
-        <div>
-            <h1>The best error message is the one that never shows up.</h1>
+        <div class="login-form-para">
+            <h1 class="main-heading">Explore My Blogs</h1>
+            <hr>
+            <p>''Explore the digital realm with our blog, where coding meets creativity. Dive into insightful articles,
+                discover programming tips, and stay updated on the latest tech trends. Join us on a journey of
+                innovation, problem-solving, and endless possibilities in the world of technology!''</p>
         </div>
-        <div>
+        <div class="login-form-user">
             {% if page == 'user_register' %}
             <div class="register-form">
                 <form action="" autocomplete="off" method="post">
