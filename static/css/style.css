@@ -747,3 +747,11 @@ strong {
 .test{
     margin: 0 10px;
 }
+.disclaimer{
+    font-size: 13px !important;
+}
+pre{
+    padding: 5px;
+    background-color: #000;
+    color: #fff;
+}

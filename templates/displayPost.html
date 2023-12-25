@@ -9,7 +9,9 @@
             {% if post.post_image %}
             <img src="{{post.post_image.url}}" alt="image">
             {% endif %}
-            <p><strong>Description: </strong> {{post.post_description}}</p>
+            {% autoescape off %}
+            <p><strong>Description: </strong> <span><pre>{{post.post_description | safe}}</pre></span></p>
+            {% endautoescape %}
             <small><strong>Updated on: </strong> {{post.post_created | timesince}} ago</small>
         </div>
     </div>
