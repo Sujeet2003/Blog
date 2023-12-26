@@ -151,12 +151,15 @@ header.masthead {
     .masthead .blog-quotes h1 {
         font-size: 40px;
     }
-
+}
+.masthead .blog-quotes{
+    margin: 0 !important;
 }
 
 @media (max-width: 340px) {
     .masthead .blog-quotes p {
         padding: 0 20px;
+        padding-bottom: 50px;
     }
 }
 
@@ -332,7 +335,7 @@ footer .footer-rights p {
 .main-section {
     min-height: 100vh;
     padding: 20px;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     background-color: rgb(245, 244, 244);
 
 }
