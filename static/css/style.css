@@ -335,7 +335,7 @@ footer .footer-rights p {
 .main-section {
     min-height: 100vh;
     padding: 20px;
-    /* padding-top: 100px; */
+    padding-top: 100px;
     background-color: rgb(245, 244, 244);
 
 }
